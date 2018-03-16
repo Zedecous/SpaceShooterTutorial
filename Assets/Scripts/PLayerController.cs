@@ -9,6 +9,7 @@ public class Boundary
 public class PLayerController : MonoBehaviour {
 	public float speed;
 	public Rigidbody rb;
+	AudioSource shotSound;
 	public float tilt;
 	public GameObject shot;
 	public Transform shotSpawn; 
@@ -18,9 +19,11 @@ public class PLayerController : MonoBehaviour {
 	public Boundary boundary;
 	void Update()
 	{
+		shotSound = GetComponent<AudioSource> ();
 		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
+			shotSound.Play ();
 		}
 	}
 	void FixedUpdate()
